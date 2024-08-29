@@ -45,7 +45,7 @@ const SignUp: React.FC = () => {
 			})
 			.catch((error) => {
 				toast.error(error.message);
-				AetherLogger.error(`Error: ${error.message}`, error);
+				AetherLogger.error(`${error.message}`, error);
 			});
 	};
 
