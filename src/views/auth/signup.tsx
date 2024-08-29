@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import AuthInput from "./authInput";
 import AetherLogo from "../../reusables/aetherlogo";
 import { SERVER_SIGNUP_URL } from "../../config/constants";
+import AetherCTAButton from "../../reusables/aetherCTAButton";
+import { AetherLogger } from "../../config/aetherLogger";
 
 interface SignupData {
 	firstName: string;
@@ -36,14 +38,14 @@ const SignUp: React.FC = () => {
 		axios
 			.post(SERVER_SIGNUP_URL, data)
 			.then((response) => {
-				console.log("Response: ", response);
+				AetherLogger.info(`Response: ${response}`);
 				toast.success("Signup successful", {
 					position: "top-right",
 				});
 			})
 			.catch((error) => {
 				toast.error(error.message);
-				console.error("Error message: ", error.message);
+				AetherLogger.error(`Error: ${error.message}`, error);
 			});
 	};
 
@@ -95,6 +97,9 @@ const SignUp: React.FC = () => {
 							className={""}
 							onChange={handleChange}
 						/>
+						<div>
+							<AetherCTAButton ctaText={"SignUp"} type={"submit"} />
+						</div>
 					</form>
 				</div>
 			</div>
